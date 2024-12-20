@@ -1,0 +1,70 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.editNav{
+    background-color: black !important;
+    align-items: center;
+    align-content: center !important;
+}
+
+.editNav  .nav-link, .custom-navbar a {
+    color: rgb(225, 236, 65) !important;
+    font-family: 'Open Sans'; 
+    /*font-size: 30px; */
+    align-items: flex-end;
+}
+
+.custom-navbar .form-control {
+    background-color: #1c2833;
+    color: rgb(225, 236, 65);
+  }
+
+@font-face {
+    font-family: Open Sans;
+    src: url('/src/Open_Sans/OpenSans.ttf');
+}
+
+.derecha{
+    flex-direction: column;
+    align-content: end;
+    align-items: end;
+}
+
+input.form-control.bg-dark {
+    background-color: #000;
+    color: white; 
+    border: 1px solid #ffff; 
+  }
+  
+  .input-group-text.bg-dark {
+    background-color: #000000;
+    color: white;
+  }
+
+.tam{
+    font-size: 30px; 
+}
+
+
+@media (max-width: 768px) {
+    .tel{
+        
+    }
+}
+/*    .editNav .navbar-nav {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .editNav .form-control {
+        margin-top: 10px; 
+        width: 100%; 
+    }
+
+    .editNav .input-group {
+        margin-top: 10px;
+        width: 100%; 
+    }
+} */
