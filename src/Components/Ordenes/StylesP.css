@@ -41,6 +41,11 @@ body{
     color: black;
     margin-top: 30px;
     text-align: center;
+    
+}
+
+.tamaño{
+    width: 40%;
 }
 
 .rigth{

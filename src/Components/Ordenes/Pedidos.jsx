@@ -62,9 +62,9 @@ return (
                         <label class="col-9 subtitle pd"> {destinoD} </label>
                         <label class="col-3 date"> {horaD} </label>
                     </div>
-                <div class="row">
-                    <button type="button" class="btn left" id="cancel_conf">Its time for pickup</button>
-                    <button onClick={handleClick} type="button" class="btn rigth" id="cancel_conf">Resume<i class="fa fa-eye eye"></i></button>
+                <div class="modal-footer">
+                    <button type="button" class="btn left tamaño" id="cancel_conf">Its time for pickup</button>
+                    <button onClick={handleClick} type="button" class="btn rigth tamaño" id="cancel_conf">Resume<i class="fa fa-eye eye"></i></button>
                 </div>
             </div>
         </div>
