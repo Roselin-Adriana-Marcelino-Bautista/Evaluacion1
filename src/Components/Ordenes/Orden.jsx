@@ -33,7 +33,7 @@ import Pedidos from './Pedidos';
 
   useEffect(() => {
     if (DatosB.length > 0) {
-      console.log(DatosB);  // Aquí obtendrás el valor actualizado de DatosB
+      console.log(DatosB); 
     }
   }, [DatosB]);  
 

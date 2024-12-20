@@ -26,10 +26,37 @@ body{
     src: url('/src/Open_Sans/OpenSans.ttf');
 }
 
+.conte {
+    display: flex;
+    margin: 10px;
+    padding: 30px;
+    margin-left: 10px;
+    
+   
+  }
+
 .derecha{
+    display: block;
     flex-direction: column;
-    align-content: end;
-    align-items: end;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 10px !important;
+    margin-right: 10px;
+    font-size: 15px ;
+
+    /*gap: 30px !important;*/
+    text-align: center;
+    
+    
+}
+
+.centro{
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px !important;
+    color:  #FFEE00;    
 }
 
 input.form-control.bg-dark {
@@ -47,24 +74,94 @@ input.form-control.bg-dark {
     font-size: 30px; 
 }
 
+.tam1{
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    margin-left: auto;
+    padding-left: 200px;
+}
 
-@media (max-width: 768px) {
-    .tel{
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .nav-link.active {
+    color:  #FFEE00;
+  }
+
+  .nav-link:focus,
+  .nav-link:active {
+    color:  #FFEE00;
+  }
+
+  @media (max-width: 576px) {
+    .nav-link {
+      font-size: 10px !important;
+      
+    }
+    .derecha{
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 10px !important;
+        margin-right: 10px;
+        font-size: 15px ;
+        text-align: center;
         
     }
+
+    .conte {
+        display: flex;
+        margin: 10px;
+        margin-left: 10px;
+        padding: 10px;
+    }
+
+    .tam1{
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        margin-left: auto;
+        padding-left: 20px;
+    }
+  }
+
+ 
+  @media (max-width: 768px) {
+    .nav-link {
+      font-size: 14px !important; 
+    }
+    .derecha{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 10px !important;
+        margin-right: 10px;
+        font-size: 10px ;
+        gap: 10px !important;
+        
+    }
+
+    .conte {
+        display: flex;
+        margin: 10px;
+        margin-left: 10px;
+        padding: 10px;
+    }
+
+    .tam1{
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        margin-left: auto;
+        padding-left: 20px;
+    }
 }
-/*    .editNav .navbar-nav {
-        flex-direction: column; 
-        align-items: center; 
-    }
-
-    .editNav .form-control {
-        margin-top: 10px; 
-        width: 100%; 
-    }
-
-    .editNav .input-group {
-        margin-top: 10px;
-        width: 100%; 
-    }
-} */

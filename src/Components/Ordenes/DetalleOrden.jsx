@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DetalleDestinos from './DetalleDestinos';
+import './detail.css';
 
 export const DetalleOrden = () => {
   const [informacion, setInformacion] = useState([]);
@@ -15,7 +16,7 @@ export const DetalleOrden = () => {
   useEffect(() => {
     const data = localStorage.getItem('informacion');
     if (data) {
-      setInformacion(JSON.parse(data)); // Recuperar y parsear la información
+      setInformacion(JSON.parse(data));
     }
   }, []);
 
@@ -30,12 +31,11 @@ export const DetalleOrden = () => {
       });
   }, []);
 
-  // Verificar si `detalleOrden` tiene datos antes de acceder a sus propiedades
+  
   if (!detalleOrden || !detalleOrden.result) {
     return <p>Cargando información...</p>;
   }
 
-  // Variables para el renderizado seguro
   const referencia = detalleOrden.result.reference_number || 'N/A';
   const estado1 = detalleOrden.result.destinations?.[0]?.status_string || 'N/A';
   const estado2 = detalleOrden.result.destinations?.[1]?.status_string || 'N/A';
@@ -77,168 +77,120 @@ export const DetalleOrden = () => {
 
   return (
     <div>
-      {/* Contenedor principal */}
-      <div className="container">
-        {/* Referencia y orden */}
-        <div className="row">
-          <label className="col-md-12">Referencia: {referencia}</label>
-        </div>
-        <div className="row">
-          <label className="col-md-12">Order #: {informacion.order || 'N/A'}</label>
-        </div>
-
-        {/* Pickup 
-        <button onClick={() => validar("pickup")}>*/}
-            <div className="row" onClick={() => validar("pickup")}>
-                <small className="col-md-12">Pickup</small>
-                <div className="row">
-                    <label className="col-md-6">
-                    <span className="fa fa-truck"></span> {informacion.origen || 'N/A'}
-                    </label>
-                </div>
-                <div className="row">
-                    <label className="col-md-6">{informacion.direccionO || 'N/A'}</label>
-                </div>
-                <div className="row">
-                    <label className="col-md-6">
-                    {estado1 === 'Aceptada' ? (
-                        <i className="bi bi-record-fill" style={{ color: 'blue' }}></i>
-                    ) : (
-                        <i className="bi bi-record-fill" style={{ color: 'gray' }}></i>
-                    )}
-                    {estado1}
-                    </label>
-                </div>
-            </div>
-        {/* </button>
-        
-
-        Dropoff 
-        <button>*/}
-            <div className="row" onClick={() => validar("dropoff")}>
-                <small className="col-md-12">Dropoff</small>
-                <div className="row">
-                    <label className="col-md-6">
-                    <span className="ti-marker"></span> {informacion.destino || 'N/A'}
-                    </label>
-                </div>
-                <div className="row">
-                    <label className="col-md-6">{informacion.direccionD || 'N/A'}</label>
-                </div>
-                <div className="row">
-                    <label className="col-md-6">
-                    {estado2 === 'Aceptada' ? (
-                        <i className="bi bi-record-fill" style={{ color: 'blue' }}></i>
-                    ) : (
-                        <i className="bi bi-record-fill" style={{ color: 'gray' }}></i>
-                    )}
-                    {estado2}
-                    </label>
-                </div>
-            </div>
-            </div>
-
-
-
-
-            {/* Movimientos */}
-                {formulario !== null && (
-                    <div>
-                        <div>
-                              <div className="row">
-                                {/* Imagen del avatar */}
-                                <div className="row">
-                                  <label className="col-md-12">
-                                    <img
-                                      src={avatarUrl}
-                                      alt="Avatar"
-                                      style={{
-                                        width: '300px', // Ajusta el tamaño de la imagen
-                                        height: '300px',
-                                        borderRadius: '50%', // Hace que sea circular
-                                        objectFit: 'cover', // Ajusta la imagen al contenedor
-                                      }}
-                                    />
-                                  </label>
-                                </div>
-                        
-                                {/* Hora del conductor */}
-                                <div className="row">
-                                  <label className="col-md-6">{horaC}</label>
-                                </div>
-                        
-                                {/* Lista de destinos */}
-                                <div className="container mt-5">
-
-                                      {/* Encabezados */}
-                                        <div className="row">
-                                            <label className="col-md-4">Estado</label>
-                                            <label className="col-md-4">Texto</label>
-                                        </div>
-                                        
-                                        {/* Validar y Renderizar Dinámicamente */}
-                                        {detallePickup !== null && detallePickup.map((element, index) => (
-                                            <label className="col-md-12" key={index}>
-                                                <i className={element.active ? 'fa fa-circle' : 'fa fa-car'}></i> {element.status}
-                                            </label>
-                                        ))}
-
-                                    <div class="row">
-                                        <button
-                                            type="button"
-                                            className="btn btn-success"
-                                            id="cancel_conf"
-                                            disabled={statusC < 3}
-                                            >
-                                            Track Order
-                                        </button>    
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-      
-        {/*  </button>
-
-        </div>
-        
-
-      Footer */}
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              Pickup Data
-            </button>
-          </h2>
-          <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-            <div className="accordion-body">
-              <div className="row">
-                <label className="col-md-12">{detalleOrden.result.driver?.nickname || 'N/A'}</label>
-              </div>
-              <div className="row">
-                <label className="col-md-6">{fechaConductor}</label>
-                <label className="col-md-4">{horaC}</label>
-              </div>
-              <div className="row">
-                <label className="col-md-12">{detalleOrden.result.driver?.telephone || 'N/A'}</label>
-              </div>
-              <div className="row">
-                <label className="col-md-12">{detalleOrden.result.driver?.email || 'N/A'}</label>
-              </div>
-            </div>
+      <div class="container cont">
+          <div class="row">
+              <label class="col-12 subtitle2">Referencia: {referencia}</label>
           </div>
-        </div>
+          <div class="row">
+              <label class="col-12 title">Order #: {informacion.order || 'N/A'}</label>
+          </div>
+          <div class="container">
+              <div class="row">
+                  <div class="col-2 icon-container">
+                      <label class="icon"><i class="fa fa-truck"></i> </label>
+                      <label class="icon2"><i class="fa fa-circle"></i> </label>
+                  </div>
+                  <div class="col-10">
+                      <div onClick={() => validar("pickup")}>
+                          <div class="row">
+                              <label class="subtitle">PICKUP</label>
+                          </div>
+                          <div class="row">
+                              <label class="text"> {informacion.origen || 'N/A'} </label>
+                          </div>
+                          <div class="row">
+                              <label class="subtitle">{informacion.direccionO || 'N/A'}</label>
+                          </div>
+                          <div class="row">
+                              <label class="status">
+                              {estado1 === 'Aceptada' ? (
+                                  <i class="bi bi-record-fill" style={{ color: '#117AE8' }}></i>
+                              ) : (
+                                  <i class="bi bi-record-fill" style={{ color: 'gray' }}></i>
+                              )}
+                              {estado1}
+                              </label>
+                          </div>
+                      </div>
+                      <div onClick={() => validar("dropoff")}>
+                          <div class="row">
+                              <label class="subtitle">DROPOFF</label>
+                          </div>
+                          <div class="row">
+                              <label class="text">{informacion.destino || 'N/A'}</label>
+                          </div>
+                          <div class="row">
+                              <label class="subtitle">{informacion.direccionD || 'N/A'}</label>
+                          </div>
+                          <div class="row">
+                              <label class="status">
+                                  {estado2 === 'Aceptada' ? (
+                                      <i class="bi bi-record-fill" style={{ color: '#117AE8' }}></i>
+                                  ) : (
+                                      <i class="bi bi-record-fill" style={{ color: 'gray' }}></i>
+                                  )}
+                                  {estado2}
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
+      
+      {formulario !== null && (
+          <div>
+              <div>
+                  <div class="container-foto cont">
+                      <div class="row">
+                          <label class="col-12">
+                              <img src={avatarUrl} alt="Avatar" style={{width: '300px', height: '300px', borderRadius: '50%', objectFit: 'cover'}}/>
+                          </label>
+                      </div>
+                      <div class="row">
+                          <label class="col-6">{horaC}</label>
+                      </div>
+                      <div class="container mt-5">
+                          {detallePickup !== null && detallePickup.map((element, index) => (
+                              <label class="col-12" key={index}>
+                                  <i class={element.active ? 'fas fa-check-circle' : 'fa fa-circle'}></i> {element.status}
+                              </label>
+                          ))}
+                          <div class="row">
+                              <button type="button" class="btn fuente-boton" id="cancel_conf" disabled={statusC < 3} >Track Order </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      )}
+      
+      <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+              <h2 class="accordion-header">
+                  <button class="accordion-button color-general" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" /*aria-expanded="true" aria-controls="collapseOne"*/>
+                      Pickup Data
+                  </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <div class="accordion-body container-pickup">
+                      <div class="row">
+                          <label class="col-12">{detalleOrden.result.driver?.nickname || 'N/A'}</label>
+                      </div>
+                      <div class="row">
+                          <label class="col-6">{fechaConductor}</label>
+                          <label class="col-4">{horaC}</label>
+                      </div>
+                      <div class="row">
+                          <label class="col-12">{detalleOrden.result.driver?.telephone || 'N/A'}</label>
+                      </div>
+                      <div class="row">
+                          <label class="col-12">{detalleOrden.result.driver?.email || 'N/A'}</label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   );
 };

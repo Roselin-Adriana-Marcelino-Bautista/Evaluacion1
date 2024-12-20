@@ -9,7 +9,7 @@ const Pedidos = ( { order, type, status_string, origen, destino, origenD, destin
     const navigate = useNavigate();
 
     if (!order || !origen || !destino) {
-        return null; // No renderizar si faltan datos clave
+        return null; 
       }
 
       const handleClick = () => {
@@ -23,10 +23,10 @@ const Pedidos = ( { order, type, status_string, origen, destino, origenD, destin
           horaO,
           fechaD,
           horaD
-        }; // Información a enviar
+        }; 
         
-        localStorage.setItem('informacion', JSON.stringify(data)); // Guardar información en localStorage
-        navigate('/Pagina2'); // Abrir una nueva pestaña o página
+        localStorage.setItem('informacion', JSON.stringify(data));
+        navigate('/Pagina2'); 
         //console.log(data)
       };
       

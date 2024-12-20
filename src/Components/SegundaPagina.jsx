@@ -1,16 +1,14 @@
-import Titulo from './Nav/Titulo';
-import Nav from './Nav/Nav';
 
 import React from 'react'
 import Orden from './Ordenes/Orden';
 import Pedidos from './Ordenes/Pedidos';
 import { DetalleOrden } from './Ordenes/DetalleOrden';
-import Destinos from './Ordenes/Destinos';
+import Titulo2 from './Nav/Titulo2';
 
 export const SegundaPagina = () => {
   return (
     <div>
-        <Titulo></Titulo>
+        <Titulo2></Titulo2>
         <DetalleOrden></DetalleOrden>
         
     </div>

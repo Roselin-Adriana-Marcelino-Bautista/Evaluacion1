@@ -19,20 +19,32 @@ import Pedidos from './Components/Ordenes/Pedidos';
 import SegundaPagina from './Components/SegundaPagina';
 import Destinos from './Components/Ordenes/Destinos';
 import DetalleDestinos from './Components/Ordenes/DetalleDestinos';
+import Titulo2 from './Components/Nav/Titulo2';
+//import NoMatch from './Components/NoMatch';
 
+const NoMatch = () => { 
+  return ( 
+    <div> 
+      <h1>404 - Página no encontrada</h1> 
+      <p>La página que estás buscando no existe.</p> 
+    </div> 
+  );
+};
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Evaluacion1">
       <Routes>
         <Route path="/Nav" element={<Nav />} />
         <Route path="/" element={<PaginaPrincipal />} />
         <Route path="/Titulo" element={<Titulo />} />
+        <Route path="/Titulo2" element={<Titulo2 />} />
         <Route path="/Orden" element={<Orden />} />
         <Route path="/Pedidos" element={<Pedidos />} />
         <Route path="/Pagina2" element={<SegundaPagina />} />
         <Route path="/Destinos" element={<Destinos />} />
         <Route path="/DestalleDestinos" element={<DetalleDestinos />} />
+        <Route path="*" element={<NoMatch/>} />
       </Routes>
     </Router>
       

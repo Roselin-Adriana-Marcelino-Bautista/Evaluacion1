@@ -8,6 +8,12 @@ function Nav() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
 
+    const [active, setActive] = useState('Upcoming');
+
+    const handleSetActive = (option) => {
+      setActive(option);
+    };
+
   useEffect(() => {
     const handleSearch = async () => {
       if (query) {
@@ -27,9 +33,9 @@ function Nav() {
 
     const delayDebounceFn = setTimeout(() => {
       handleSearch();
-    }, 300); // Espera 300ms antes de realizar la búsqueda
+    }, 300);
 
-    return () => clearTimeout(delayDebounceFn); // Cancela el temporizador si el efecto se vuelve a ejecutar
+    return () => clearTimeout(delayDebounceFn); 
     }, [query]);
 
     console.log(query)
@@ -45,50 +51,52 @@ function Nav() {
             
             <div >
 
-                <nav class="navbar editNav bg-dark navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Upcoming</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Completed</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                        <a class="nav-link active" aria-current="page" href="#">Past</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <div className="input-group">
-                            <span className="input-group-text bg-dark text-white">
-                                <i className="bi bi-search"></i>
-                            </span>
-                            <input
-                                className="form-control bg-dark text-white "
-                                type="search"
-                                aria-label="Search"
-                                placeholder="Busca aquí..." 
-                                value={query} 
-                                onChange={(e) => setQuery(e.target.value)} 
-                            />
-                            {/*<div>
-                                {results.map((result, index) => (
-                                <div key={index}>
-                                    <h3>{result.title}</h3>
-                                    <p>{result.description}</p>
-                                </div>
-                                ))}
-                            </div>*/}
-                        </div>
-
-                    </form>
-                    </div>
+      {/**Nuevi Nav */}
+      <div class="contenedor">
+            {/*<div class="conte centro">
+                <label class="col-12">Cargo Orders  <i class="tam1 bi bi-bell" ></i></label>
+            </div>*/}
+            <div class="conte derecha"/*"container cont"*/>
+              <div class="row">
+                  <a class={`col-4 nav-link ${active === 'Upcoming' ? 'active' : ''}`} aria-current="page" href="#" onClick={() => handleSetActive('Upcoming')}>Upcoming</a>
+                  <a class={`col-4 nav-link ${active === 'Completed' ? 'active' : ''}`} aria-current="page" href="#" onClick={() => handleSetActive('Completed')}>Completed</a>
+                  <a class={`col-4 nav-link ${active === 'Past' ? 'active' : ''}`} aria-current="page" href="#" onClick={() => handleSetActive('Past')}>Past</a>
+                 {/*<a class="col-3 nav-link">
+                  <div class="col-3 input-group">
+                      <span className="input-group-text bg-dark text-white">
+                          <i className="bi bi-search"></i>
+                      </span>
+                      <i className="bi bi-search"></i>
+                      <input
+                          class="col-3 form-control bg-dark text-white "
+                          type="search"
+                          placeholder="Busca aquí..." 
+                          value={query} 
+                          onChange={(e) => setQuery(e.target.value)} 
+                        /> 
+                  </div>
+                </a>*/}
+              </div>
+               <div class="row">
+                <div class="col-2"> </div>
+                <div className="col-8">
+                  <div className=" input-group">
+                  <span className="input-group-text  bg-dark text-white">
+                    <i className="bi bi-search"></i>
+                  </span>
+                  <input
+                    className="form-control input-group-text bg-dark text-white"
+                    type="search"
+                    placeholder="Busca aquí..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  /></div>
                 </div>
-                </nav>
-                
+              </div>
             </div>
+
+          </div>                
+      </div>
 
         
     );
